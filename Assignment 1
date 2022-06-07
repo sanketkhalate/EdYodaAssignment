@@ -1,0 +1,4 @@
+where you will use a daemon set instead of replica set.
+In Daemon set it is ensure that a Pod is present on a defined set of Nodes.
+Daemon services place and maintain one copy of your task for each container instance.
+In daemon set there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies like replica set.
