@@ -1,0 +1,63 @@
+Assignment Voting_App
+Observations
+
+when put kubectl apply -f .
+deployment.apps/db created
+service/db created
+deployment.apps/redis created
+service/redis created
+deployment.apps/result created
+service/result created
+deployment.apps/vote created
+service/vote created
+deployment.apps/worker created
+
+kubectl get svc
+shows us that vote and result pod got the NodePort
+NAME     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+db       ClusterIP   10.103.200.189   <none>        5432/TCP         5m30s
+redis    ClusterIP   10.96.226.144    <none>        6379/TCP         5m30s
+result   NodePort    10.109.141.243   <none>        5001:31001/TCP   5m30s
+vote     NodePort    10.99.236.12     <none>        5000:31000/TCP   5m30s
+
+created two browsers-
+one is http://54.255.34.173:31000/ for voting
+another is http://54.255.34.173:31001/ for see result
+
+getting all pods
+kubectl get po
+NAME                          READY   STATUS    RESTARTS   AGE
+db-b54cd94f4-fgf64            1/1     Running   0          17m
+ratings-v2-7f5576697d-25g5r   1/1     Running   0          21h
+redis-868d64d78-xd9lb         1/1     Running   0          17m
+result-5d57b59f4b-sptfj       1/1     Running   0          17m
+vote-94849dc97-ddf7z          1/1     Running   0          17m
+worker-dd46d7584-7hgh4        1/1     Running   1          17m
+
+
+first try to delete vote pod-
+kubectl delete po vote-94849dc97-ddf7z
+output is : pod "vote-94849dc97-ddf7z" deleted
+after giving command to delete pod vote it's get deleted,but creates another pod automatically and it's showing that pod vote is running newly
+
+
+then try to delete worker pod-
+kubectl delete po worker-dd46d7584-7hgh4
+output is : pod "worker-dd46d7584-7hgh4" deleted
+after giving command to delete pod worker it's get deleted,but creates another pod automatically and it's showing that pod worker is running newly
+
+
+then try to delete db pod-
+kubectl delete po db-b54cd94f4-fgf64
+output is : pod "db-b54cd94f4-fgf64" deleted
+after deleting db it's not showing vote count at below right corner and by default it's showing 50:50 % voting
+
+after deleting result pod-
+ kubectl delete po result-5d57b59f4b-sptfj
+it showing result pod get terminating and after some time it's recreated. 
+
+Jargons we learnt throughout course are-
+ReplicaSet, daemon set,statefulSet,services,volume,microservices,calico,helm.
+
+
+
