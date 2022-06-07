@@ -1,0 +1,4 @@
+Deployment
+We can use kubectl replace to update the resource
+Patch the deployment using kubectl patch. kubectl patch deployment patch-demo -p ' {"spec": {"replicas": 2}}'
+Change the pod’s image with kubectl set image. kubectl rolling-update frontend --image=image:v2
