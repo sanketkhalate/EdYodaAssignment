@@ -1,0 +1,7 @@
+Assignment 3
+
+first we will check weather the service is accessible within cluster
+     if yes - then we have to check IP and port no is correct or not
+     if no - then we have to check it is working in container correctly or not
+     Also we have to check yaml file contents weather NodeSelector and port no is correct or not
+may be kube-proxy is not working properly.
